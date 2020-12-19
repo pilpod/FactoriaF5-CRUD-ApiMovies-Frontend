@@ -1,0 +1,11 @@
+TMDB - movies api
+--------------------------
+
+Clave de la API (v3 auth)
+f2527bcedba3b6b354338c4907758284
+
+Ejemplo de solicitud de API
+https://api.themoviedb.org/3/movie/550?api_key=f2527bcedba3b6b354338c4907758284
+
+Token de acceso de lectura a la API (v4 auth)
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMjUyN2JjZWRiYTNiNmIzNTQzMzhjNDkwNzc1ODI4NCIsInN1YiI6IjVmY2JhOTBkODI2MWVlMDA0MTQwODNlZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zNtYa8V51LMrlLiz0DYDfJFnO3lL0D5pwTgdTuCzPCg
