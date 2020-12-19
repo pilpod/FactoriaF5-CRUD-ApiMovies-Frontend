@@ -1,17 +1,4 @@
 "use strict";
-var Controller;
-(function (Controller) {
-    const url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
-})(Controller || (Controller = {}));
-var Models;
-(function (Models) {
-    class Movie {
-        constructor(title, poster) {
-            this.title = title;
-            this.poster = poster;
-        }
-    }
-})(Models || (Models = {}));
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -24,13 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var Api;
 (function (Api) {
     class ApiMovie {
-        constructor(url) {
-            this.url = url;
+        constructor() {
+            this.url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
         }
-        PopularMovies(url, data) {
+        PopularMovies(data) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const promise = yield fetch(url, {
+                    const promise = yield fetch(this.url, {
                         method: 'GET',
                         redirect: 'follow',
                         body: JSON.stringify(data),
@@ -67,29 +54,47 @@ var Api;
         ;
     });
 })(Api || (Api = {}));
+///<reference path="../../Infrastructure/Api/Api.ts" />
+///<reference path="../Models/Movie.ts" />
+///<reference path="../Contracts/IApiService.ts" />
+///<reference path="../../Infrastructure/Api/Api.ts" />
+var Controller;
+(function (Controller) {
+    class MovieController {
+        CallApi(tmdb) {
+            tmdb.PopularMovies()
+                .then(data => this.ShowAllPopularMovies(data));
+        }
+        ShowAllPopularMovies(data) {
+            const testSection = document.getElementById('test_section');
+            for (let i = 0; i < data['results'].length; i++) {
+                let poster = data['results'][i]['poster_path'];
+                let title = data['results'][i]['title'];
+                let id = data['results'][i]['id'];
+                testSection.innerHTML += `
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mr-3 mt-3" style="width: 16rem;">
+                      <img id="movie_img" src="https://image.tmdb.org/t/p/w500/${poster}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 id="movie_title" class="card-title"><a href="${id}">${title}</a></h5>
+                      </div>
+                    </div>
+                  </div>`;
+            }
+        }
+    }
+    Controller.MovieController = MovieController;
+})(Controller || (Controller = {}));
 ///<reference path="Domain/Services/MovieController.ts" />
 ///<reference path="Domain/Models/Movie.ts" />
 ///<reference path="Infrastructure/Api/Api.ts" />
-const url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
-const testSection = document.getElementById('test_section');
-Api.popularMovies(url)
-    .then(data => ShowPopularMovies(data));
-function ShowPopularMovies(data) {
-    for (let i = 0; i < data['results'].length; i++) {
-        let poster = data['results'][i]['poster_path'];
-        let title = data['results'][i]['title'];
-        let id = data['results'][i]['id'];
-        testSection.innerHTML += `
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-        <div class="card mr-3 mt-3" style="width: 16rem;">
-          <img id="movie_img" src="https://image.tmdb.org/t/p/w500/${poster}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 id="movie_title" class="card-title"><a href="${id}">${title}</a></h5>
-          </div>
-        </div>
-      </div>`;
-    }
-}
+var App;
+(function (App) {
+    const url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
+    let allMovies = new Controller.MovieController();
+    Api.popularMovies(url)
+        .then(data => allMovies.ShowAllPopularMovies(data));
+})(App || (App = {}));
 var Test;
 (function (Test) {
     function SayingFactoria() {

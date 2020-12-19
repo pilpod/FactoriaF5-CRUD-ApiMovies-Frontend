@@ -1,5 +1,42 @@
+///<reference path="../Models/Movie.ts" />
+///<reference path="../Contracts/IApiService.ts" />
+///<reference path="../../Infrastructure/Api/Api.ts" />
+
 namespace Controller {
 
-    const url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
+    export class MovieController implements Contract.ExternalApiData {
+
+        CallApi(tmdb:Api.ApiMovie): any
+        {
+            tmdb.PopularMovies()
+                .then(data => this.ShowAllPopularMovies(data));
+        }
+
+        public ShowAllPopularMovies(data:any)
+        {
+            const testSection = document.getElementById('test_section') as HTMLInputElement;
+
+            for (let i = 0; i < data['results'].length; i++) {
+
+                let poster:any = data['results'][i]['poster_path']
+                let title:string = data['results'][i]['title']
+                let id:number = data['results'][i]['id']
+              
+                testSection.innerHTML += `
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mr-3 mt-3" style="width: 16rem;">
+                      <img id="movie_img" src="https://image.tmdb.org/t/p/w500/${poster}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 id="movie_title" class="card-title"><a href="${id}">${title}</a></h5>
+                      </div>
+                    </div>
+                  </div>`;
+            }
+            
+        }
+
+        
+
+    }
 
 }

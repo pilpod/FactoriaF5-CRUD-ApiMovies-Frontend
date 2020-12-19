@@ -24,3 +24,8 @@ Crea con Postman un crud a la Api de películas
 
 - Modifica el Json a tu gusto y añade imágenes de portada de las películas
 
+
+## NPM additionals
+
+- npm install uniqid --save-dev
+- npm install --save @types/uniqid
