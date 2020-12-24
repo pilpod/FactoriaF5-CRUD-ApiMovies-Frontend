@@ -6,9 +6,16 @@ namespace Controller {
 
     export class MovieController implements Contract.ExternalApiData {
 
-        CallApi(tmdb:Api.ApiMovie): any
+        tmdb:Api.ApiMovie;
+
+        constructor(tmdb:Api.ApiMovie)
         {
-            tmdb.PopularMovies()
+          this.tmdb = tmdb;
+        }
+
+        public ListPopularMovies(): any
+        {
+            this.tmdb.PopularMovies()
                 .then(data => this.ShowAllPopularMovies(data));
         }
 

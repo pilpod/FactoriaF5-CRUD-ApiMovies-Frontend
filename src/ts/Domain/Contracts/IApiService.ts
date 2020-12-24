@@ -4,7 +4,9 @@ namespace Contract {
 
     export interface ExternalApiData {
 
-        CallApi(tmdb:Api.ApiMovie): any;
+        tmdb:Api.ApiMovie;
+
+        // CallApi(tmdb:Api.ApiMovie): any;
 
     }
 

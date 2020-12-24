@@ -61,8 +61,11 @@ var Api;
 var Controller;
 (function (Controller) {
     class MovieController {
-        CallApi(tmdb) {
-            tmdb.PopularMovies()
+        constructor(tmdb) {
+            this.tmdb = tmdb;
+        }
+        ListPopularMovies() {
+            this.tmdb.PopularMovies()
                 .then(data => this.ShowAllPopularMovies(data));
         }
         ShowAllPopularMovies(data) {
@@ -90,10 +93,9 @@ var Controller;
 ///<reference path="Infrastructure/Api/Api.ts" />
 var App;
 (function (App) {
-    const url = "https://api.themoviedb.org/3/movie/popular?api_key=f2527bcedba3b6b354338c4907758284&language=es-ES";
-    let allMovies = new Controller.MovieController();
-    Api.popularMovies(url)
-        .then(data => allMovies.ShowAllPopularMovies(data));
+    let tmdb = new Api.ApiMovie();
+    let allMovies = new Controller.MovieController(tmdb);
+    allMovies.ListPopularMovies();
 })(App || (App = {}));
 var Test;
 (function (Test) {
