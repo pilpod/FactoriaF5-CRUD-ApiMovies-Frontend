@@ -68,6 +68,11 @@ namespace Models {
             }
         }
 
+        public AddMovie(data:any)
+        {
+            console.log(data);
+        }
+
     }
 
 }

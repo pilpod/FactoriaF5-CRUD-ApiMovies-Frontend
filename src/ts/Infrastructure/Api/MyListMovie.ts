@@ -22,6 +22,25 @@ namespace Api {
             }
         }
 
+        public async PostDataMovie(data:any): Promise<any>
+        {
+            try {
+                const promise = await fetch(this.url, {
+                    method: 'POST',
+                    redirect: 'follow',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                      }
+                });
+                let response = await promise.json();
+                alert(response.message);
+            }
+            catch(error) {
+                console.log(error);
+            }
+        }
+
     }
 
 }

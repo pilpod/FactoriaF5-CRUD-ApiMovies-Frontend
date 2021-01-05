@@ -43,6 +43,9 @@ var Models;
                 `;
             }
         }
+        AddMovie(data) {
+            console.log(data);
+        }
     }
     Models.Movie = Movie;
 })(Models || (Models = {}));
@@ -125,6 +128,25 @@ var Api;
                 }
             });
         }
+        PostDataMovie(data) {
+            return __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const promise = yield fetch(this.url, {
+                        method: 'POST',
+                        redirect: 'follow',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    let response = yield promise.json();
+                    alert(response.message);
+                }
+                catch (error) {
+                    console.log(error);
+                }
+            });
+        }
     }
     Api.MyListMovie = MyListMovie;
 })(Api || (Api = {}));
@@ -175,7 +197,29 @@ var Controller;
             let movie = new Models.Movie();
             this.movies.GetMovies().then(data => movie.ShowAllMovie(data));
         }
-        CreateMovie() {
+        ShowAddMovieForm() {
+            const btn_add_movie = document.getElementById('btn_add_movie');
+            const form_add_movie = document.getElementById('form_add_movie');
+            btn_add_movie.addEventListener('click', () => {
+                if (form_add_movie.hidden == true) {
+                    form_add_movie.hidden = false;
+                    btn_add_movie.textContent = 'Close form';
+                }
+                else if (btn_add_movie.textContent == 'Close form') {
+                    form_add_movie.hidden = true;
+                    btn_add_movie.textContent = 'Add Movie';
+                }
+            });
+        }
+        AddMovie() {
+            const btn_validate_movie = document.getElementById('btn_validate_movie');
+            const form_create_movie = document.getElementById('form_create_movie');
+            const data = new FormData(form_create_movie);
+            btn_validate_movie.addEventListener('click', () => {
+                this.movies.PostDataMovie(data);
+            });
+            // let movie = new Models.Movie();
+            // this.movies.PostDataMovie().then(data => movie.AddMovie(data));
         }
         UpdateMovie() {
         }
@@ -196,6 +240,8 @@ var App;
     let apiMyListMovies = new Api.MyListMovie();
     let myList = new Controller.MyMoviesController(apiMyListMovies);
     myList.ShowAllMovies();
+    myList.ShowAddMovieForm();
+    myList.AddMovie();
 })(App || (App = {}));
 var Test;
 (function (Test) {
