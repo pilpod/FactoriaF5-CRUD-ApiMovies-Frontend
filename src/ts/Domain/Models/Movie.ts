@@ -4,15 +4,19 @@ namespace Models {
 
     export class Movie 
     {
-        id: string;
-        title: string;
-        poster: string;
+        private id: string;
+        private title: string;
+        private poster?: string;
+        private director?: string;
+        private genre?: string;
 
-        constructor(title:string, poster:string, id?: string) 
+        constructor(title:string, id?: string, poster?: string, director?: string, genre?: string) 
         {
             this.id = uniqid();
             this.title = title;
             this.poster = poster;
+            this.director = director;
+            this.genre = genre;
         }
 
         public GetId(): string
@@ -25,21 +29,25 @@ namespace Models {
             return this.title;
         }
 
-        public GetPoster(): any
+        public ShowAllMovies()
         {
-            return this.poster;
+
         }
 
-        public SetTitle(title:string): string
+        public CreateMovie()
         {
-            return this.title;
+
         }
 
-        public SetPoster(poster:string): string
+        public UpdateMovie()
         {
-            return this.poster;
+            
         }
 
+        public DeleteMovie()
+        {
+
+        }
 
     }
 

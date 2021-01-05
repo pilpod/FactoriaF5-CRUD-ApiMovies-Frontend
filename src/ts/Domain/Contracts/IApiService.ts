@@ -1,4 +1,5 @@
 ///<reference path="../../Infrastructure/Api/Api.ts" />
+///<reference path="../../Infrastructure/Api/MyListMovie.ts" />
 
 namespace Contract {
 
@@ -6,7 +7,11 @@ namespace Contract {
 
         tmdb:Api.ApiMovie;
 
-        // CallApi(tmdb:Api.ApiMovie): any;
+    }
+
+    export interface IMyJsonMovies {
+
+        peliculas:Api.MyListMovie;
 
     }
 

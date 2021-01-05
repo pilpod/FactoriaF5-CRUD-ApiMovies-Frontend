@@ -21,7 +21,7 @@ namespace Controller {
 
         public ShowAllPopularMovies(data:any)
         {
-            const testSection = document.getElementById('test_section') as HTMLInputElement;
+            const popularMovies = document.getElementById('popularMovies_section') as HTMLInputElement;
 
             for (let i = 0; i < data['results'].length; i++) {
 
@@ -29,7 +29,7 @@ namespace Controller {
                 let title:string = data['results'][i]['title']
                 let id:number = data['results'][i]['id']
               
-                testSection.innerHTML += `
+                popularMovies.innerHTML += `
                   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                     <div class="card mr-3 mt-3" style="width: 16rem;">
                       <img id="movie_img" src="https://image.tmdb.org/t/p/w500/${poster}" class="card-img-top" alt="...">

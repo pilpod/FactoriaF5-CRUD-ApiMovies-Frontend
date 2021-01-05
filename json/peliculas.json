@@ -1,10 +1,10 @@
 {
   "peliculas": [
     {
-      "id": 4,
       "nombre": "300",
       "director": "Zack Snyder",
-      "clasificacion": "Acción"
+      "clasificacion": "Acción",
+      "id": 4
     },
     {
       "id": 5,
@@ -47,6 +47,12 @@
       "director": "George Lucas",
       "clasificacion": "Ciencia Ficción",
       "id": 12
+    },
+    {
+      "nombre": "Star Trek",
+      "director": "Alguien",
+      "clasificacion": "Sciencia Ficción",
+      "id": 13
     }
   ],
   "clasificaciones": [

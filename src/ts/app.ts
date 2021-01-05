@@ -1,4 +1,5 @@
 ///<reference path="Domain/Services/MovieController.ts" />
+///<reference path="Domain/Services/MyMoviesController.ts" />
 ///<reference path="Domain/Models/Movie.ts" />
 ///<reference path="Infrastructure/Api/Api.ts" />
 

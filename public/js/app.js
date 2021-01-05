@@ -54,7 +54,35 @@ var Api;
         ;
     });
 })(Api || (Api = {}));
+var Api;
+(function (Api) {
+    class MyListMovie {
+        constructor() {
+            this.url = "http://localhost:3000/peliculas";
+        }
+        GetMovies() {
+            return __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const promise = yield fetch(this.url, {
+                        method: 'GET',
+                        redirect: 'follow',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    let response = yield promise.json();
+                    return response;
+                }
+                catch (error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+    Api.MyListMovie = MyListMovie;
+})(Api || (Api = {}));
 ///<reference path="../../Infrastructure/Api/Api.ts" />
+///<reference path="../../Infrastructure/Api/MyListMovie.ts" />
 ///<reference path="../Models/Movie.ts" />
 ///<reference path="../Contracts/IApiService.ts" />
 ///<reference path="../../Infrastructure/Api/Api.ts" />
@@ -69,12 +97,12 @@ var Controller;
                 .then(data => this.ShowAllPopularMovies(data));
         }
         ShowAllPopularMovies(data) {
-            const testSection = document.getElementById('test_section');
+            const popularMovies = document.getElementById('popularMovies_section');
             for (let i = 0; i < data['results'].length; i++) {
                 let poster = data['results'][i]['poster_path'];
                 let title = data['results'][i]['title'];
                 let id = data['results'][i]['id'];
-                testSection.innerHTML += `
+                popularMovies.innerHTML += `
                   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                     <div class="card mr-3 mt-3" style="width: 16rem;">
                       <img id="movie_img" src="https://image.tmdb.org/t/p/w500/${poster}" class="card-img-top" alt="...">
@@ -88,7 +116,21 @@ var Controller;
     }
     Controller.MovieController = MovieController;
 })(Controller || (Controller = {}));
+///<reference path="../Models/Movie.ts" />
+///<reference path="../Contracts/IApiService.ts" />
+var Controller;
+(function (Controller) {
+    class MyMoviesController {
+        constructor(peliculas) {
+            this.peliculas = peliculas;
+        }
+        Index() {
+        }
+    }
+    Controller.MyMoviesController = MyMoviesController;
+})(Controller || (Controller = {}));
 ///<reference path="Domain/Services/MovieController.ts" />
+///<reference path="Domain/Services/MyMoviesController.ts" />
 ///<reference path="Domain/Models/Movie.ts" />
 ///<reference path="Infrastructure/Api/Api.ts" />
 var App;
