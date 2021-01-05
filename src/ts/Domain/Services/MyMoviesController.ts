@@ -5,18 +5,33 @@ namespace Controller {
 
     export class MyMoviesController implements Contract.IMyJsonMovies {
 
-        peliculas:Api.MyListMovie;
+        movies:Api.MyListMovie;
 
-        constructor(peliculas:Api.MyListMovie)
+        constructor(movies:Api.MyListMovie)
         {
+            this.movies = movies;
+        }
 
-            this.peliculas = peliculas;
+
+        public ShowAllMovies()
+        {   
+            let movie = new Models.Movie();
+            this.movies.GetMovies().then(data => movie.ShowAllMovie(data));
+        }
+
+        public CreateMovie()
+        {
 
         }
 
-        public Index()
+        public UpdateMovie()
         {
             
+        }
+
+        public DeleteMovie()
+        {
+
         }
 
     }

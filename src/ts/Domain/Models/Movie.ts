@@ -1,4 +1,4 @@
-import uniqid = require("uniqid");
+// import uniqid = require("uniqid");
 
 namespace Models {
 
@@ -6,13 +6,13 @@ namespace Models {
     {
         private id: string;
         private title: string;
-        private poster?: string;
-        private director?: string;
-        private genre?: string;
+        private poster: string;
+        private director: string;
+        private genre: string;
 
-        constructor(title:string, id?: string, poster?: string, director?: string, genre?: string) 
+        constructor(title?:any, poster?:any, id?: any, director?: any, genre?: any) 
         {
-            this.id = uniqid();
+            this.id = id;
             this.title = title;
             this.poster = poster;
             this.director = director;
@@ -29,24 +29,43 @@ namespace Models {
             return this.title;
         }
 
-        public ShowAllMovies()
+        public GetPoster(): string
         {
-
+            return this.poster;
         }
 
-        public CreateMovie()
+        public GetDirector()
         {
-
+            return this.director;
         }
 
-        public UpdateMovie()
+        public GetGenre()
         {
+            return this.genre;
+        }
+
+        public ShowAllMovie(data:any)
+        {
+            const myMoviesSection = document.getElementById('myMovies') as HTMLInputElement;
             
-        }
-
-        public DeleteMovie()
-        {
-
+            for (let i = 0; i < data.length; i++) {
+                
+                this.id = data[i].id;
+                this.title = data[i].nombre;
+                this.poster = data[i].poster;
+                
+                myMoviesSection.innerHTML += `
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mr-3 mt-3" style="width: 16rem;">
+                    <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
+                    </div>
+                    </div>
+                </div>
+                `;
+                
+            }
         }
 
     }

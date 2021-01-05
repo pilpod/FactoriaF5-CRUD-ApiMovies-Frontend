@@ -9,6 +9,12 @@ namespace App {
   let allMovies = new Controller.MovieController(tmdb);
 
   allMovies.ListPopularMovies();
+
+  let apiMyListMovies = new Api.MyListMovie();
+  let myList = new Controller.MyMoviesController(apiMyListMovies);
+
+  myList.ShowAllMovies();
+
   
   
 

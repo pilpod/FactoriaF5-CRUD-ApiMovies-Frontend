@@ -11,7 +11,7 @@ namespace Contract {
 
     export interface IMyJsonMovies {
 
-        peliculas:Api.MyListMovie;
+        movies:Api.MyListMovie;
 
     }
 

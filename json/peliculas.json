@@ -2,6 +2,7 @@
   "peliculas": [
     {
       "nombre": "300",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.fruugo.es%2F300-poster-prepare-for-glory-gerard-butler-lena-headey-david-wenham%2Fp-24788740-53627771&psig=AOvVaw1TCFj7bE4c5xXH1bSmlq6w&ust=1609931006398000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNicocDShO4CFQAAAAAdAAAAABAP",
       "director": "Zack Snyder",
       "clasificacion": "Acción",
       "id": 4
@@ -9,47 +10,55 @@
     {
       "id": 5,
       "nombre": "El silencio de los corderos",
+      "poster": "https://www.google.es/url?sa=i&url=http%3A%2F%2Ftodoscontraelarte.blogspot.com%2F2014%2F12%2Fel-silencio-de-los-corderos-y-dali.html&psig=AOvVaw0tbvZZ5L4ht_SP3-ecMsLu&ust=1609931076667000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCfwuHShO4CFQAAAAAdAAAAABAJ",
       "director": "Jonathan Demme",
       "clasificacion": "Drama"
     },
     {
       "id": 6,
       "nombre": "Forrest Gump",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.es%2FForrest-Impresi%25C3%25B3n-p%25C3%25B3ster-pel%25C3%25ADcula-Tama%25C3%25B1o%2Fdp%2FB0016D58WU&psig=AOvVaw0qoYqjNib0GUszyKlnn0CD&ust=1609931110510000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDu5fHShO4CFQAAAAAdAAAAABAF",
       "director": "Robert Zemeckis",
       "clasificacion": "Comedia"
     },
     {
       "id": 7,
-      "nombre": "Las Hurdes",
+      "nombre": "Wonder Woman",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2F-%2Fes%2FWonder-P%25C3%25B3ster-pel%25C3%25ADcula-40-gal-fabricado%2Fdp%2FB072MKC6GP&psig=AOvVaw1VdF-gFA16EuuCosalEFlF&ust=1609931216890000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDTl6jThO4CFQAAAAAdAAAAABAD",
       "director": "Luis Buñuel",
       "clasificacion": "Documental"
     },
     {
       "nombre": "El sexto sentido",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.es%2FEl-sexto-sentido-P%25C3%25B3ster%2Fdp%2FB000NZJ6JS&psig=AOvVaw2G4o-dW0KZe8sZYwpAbr6F&ust=1609931253783000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjIt7bThO4CFQAAAAAdAAAAABAD",
       "director": "M. Night Shyamalan",
       "clasificacion": "Drama",
       "id": 9
     },
     {
-      "nombre": "Sagan",
-      "director": "M. Night Shyamalan",
-      "clasificacion": "Drama",
+      "nombre": "Madagascar",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.es%2FMadagascar-Poster-68-5cm-101%2Fdp%2FB0016DDWLE&psig=AOvVaw2gVC7wKXjESsUzz5kPT9-G&ust=1609931285972000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDAs8fThO4CFQAAAAAdAAAAABAO",
+      "director": "Dreamworks",
+      "clasificacion": "Animación",
       "id": 10
     },
     {
       "nombre": "Batman",
-      "director": "M. Night Shyamalan",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F137008013643315247%2F&psig=AOvVaw3LsfY02zQDWQ7HF-ZJT4NI&ust=1609931362121000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCtw-rThO4CFQAAAAAdAAAAABAI",
+      "director": "Tim Burton",
       "clasificacion": "Drama",
       "id": 11
     },
     {
       "nombre": "Star Wars: Chapter II",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.es%2FP%25C3%25B3ster-Star-Wars-Episode-Attack%2Fdp%2FB01BTPVW4C&psig=AOvVaw0BihHphXuWkLGvVguU4Eda&ust=1609931428806000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDFwYnUhO4CFQAAAAAdAAAAABAF",
       "director": "George Lucas",
       "clasificacion": "Ciencia Ficción",
       "id": 12
     },
     {
       "nombre": "Star Trek",
+      "poster": "https://www.google.es/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2F-%2Fes%2FStar-Trek-XI-Comienza-Internacional%2Fdp%2FB00DX8AMMM&psig=AOvVaw2zMdzm2DV0NVcf4RtnubP-&ust=1609931462813000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOis75nUhO4CFQAAAAAdAAAAABAT",
       "director": "Alguien",
       "clasificacion": "Sciencia Ficción",
       "id": 13
