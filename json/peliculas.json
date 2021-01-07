@@ -62,6 +62,41 @@
       "director": "Alguien",
       "clasificacion": "Sciencia Ficción",
       "id": 13
+    },
+    {
+      "nombre": "Los Croods",
+      "poster": "https://cinembrollos.files.wordpress.com/2020/10/croods_a_new_age_ver2_xlg.jpg",
+      "director": "Joel Crawford",
+      "clasificacion": "Animación",
+      "id": 14
+    },
+    {
+      "nombre": "Unhinged",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjc1Mjg5NjItY2I2MS00NDk3LWI5NGYtNzZjNTNiZmMwZTA3XkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+      "director": "Derrick Borted",
+      "clasificacion": "Thriller",
+      "id": 15
+    },
+    {
+      "nombre": "Trolls World Tour",
+      "poster": "https://i.pinimg.com/originals/c1/d0/ec/c1d0ec4d9308947451d0bc068b0e1a01.jpg",
+      "director": "Walt Dohrn",
+      "clasificacion": "Comedia",
+      "id": 16
+    },
+    {
+      "nombre": "The Comeback Trail",
+      "poster": "https://cinembrollos.files.wordpress.com/2020/10/comeback_trail_ver2.jpg",
+      "director": "George Gallo",
+      "clasificacion": "Comedia",
+      "id": 17
+    },
+    {
+      "nombre": "Poly",
+      "poster": "https://lh3.googleusercontent.com/proxy/ZLPfbntQt7UZJRgfu2tlfqlCl-iFsxc8sa7oc7SBgmXMc0R0ppzXojU2cnVBqwpSRWO8wvE04iw-4DOSEf38NNyvPG9GK8mqbgqmXCmS5WvK7aLBVXdguBShYTmolv_CvK3jLle1_YYQHDJbJ36Nf8vMjaJ3zmE",
+      "director": "Nicolas Vanier",
+      "clasificacion": "Drama",
+      "id": 18
     }
   ],
   "clasificaciones": [

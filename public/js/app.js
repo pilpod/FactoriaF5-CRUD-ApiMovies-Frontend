@@ -3,7 +3,7 @@
 var Models;
 (function (Models) {
     class Movie {
-        constructor(title, poster, id, director, genre) {
+        constructor(title, poster, director, genre, id) {
             this.id = id;
             this.title = title;
             this.poster = poster;
@@ -25,6 +25,9 @@ var Models;
         GetGenre() {
             return this.genre;
         }
+        SetId(id) {
+            this.id = id;
+        }
         ShowAllMovie(data) {
             const myMoviesSection = document.getElementById('myMovies');
             for (let i = 0; i < data.length; i++) {
@@ -33,18 +36,28 @@ var Models;
                 this.poster = data[i].poster;
                 myMoviesSection.innerHTML += `
                     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card mr-3 mt-3" style="width: 16rem;">
-                    <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
+                        <div class="card mr-3 mt-3" style="width: 16rem;">
+                            <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
+                            </div>
+                            <button id="btn_delete_movie" class="btn btn-danger" onclick="Delete(${this.id})">Trash</button>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 `;
             }
         }
-        AddMovie(data) {
-            console.log(data);
+        AddMovie(api) {
+            let newMovie = {
+                "nombre": this.title,
+                "poster": this.poster,
+                "director": this.director,
+                "clasificacion": this.genre,
+            };
+            api.PostDataMovie(newMovie);
+        }
+        DeleteMovie(api) {
+            api.DeleteDataMovie(this.id);
         }
     }
     Models.Movie = Movie;
@@ -108,7 +121,7 @@ var Api;
 (function (Api) {
     class MyListMovie {
         constructor() {
-            this.url = "http://localhost:3000/peliculas";
+            this.url = "http://localhost:3000/peliculas/";
         }
         GetMovies() {
             return __awaiter(this, void 0, void 0, function* () {
@@ -130,21 +143,29 @@ var Api;
         }
         PostDataMovie(data) {
             return __awaiter(this, void 0, void 0, function* () {
-                try {
-                    const promise = yield fetch(this.url, {
-                        method: 'POST',
-                        redirect: 'follow',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    });
-                    let response = yield promise.json();
-                    alert(response.message);
-                }
-                catch (error) {
-                    console.log(error);
-                }
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify(data);
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                };
+                fetch(this.url, requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+            });
+        }
+        DeleteDataMovie(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                yield fetch(this.url + id, {
+                    method: 'DELETE',
+                    redirect: 'follow'
+                })
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
             });
         }
     }
@@ -214,16 +235,23 @@ var Controller;
         AddMovie() {
             const btn_validate_movie = document.getElementById('btn_validate_movie');
             const form_create_movie = document.getElementById('form_create_movie');
-            const data = new FormData(form_create_movie);
-            btn_validate_movie.addEventListener('click', () => {
-                this.movies.PostDataMovie(data);
+            let data = [];
+            form_create_movie.addEventListener('submit', (event) => {
+                event.preventDefault();
+                for (let i = 0; i < form_create_movie.length - 1; i++) {
+                    data.push(form_create_movie[i].value);
+                }
+                let newMovie = new Models.Movie(data[0], data[1], data[2], data[3]);
+                newMovie.AddMovie(this.movies);
             });
-            // let movie = new Models.Movie();
-            // this.movies.PostDataMovie().then(data => movie.AddMovie(data));
         }
         UpdateMovie() {
         }
-        DeleteMovie() {
+        DeleteMovie(id) {
+            let api = this.movies;
+            let movieToDelete = new Models.Movie();
+            movieToDelete.SetId(id);
+            movieToDelete.DeleteMovie(api);
         }
     }
     Controller.MyMoviesController = MyMoviesController;
@@ -236,13 +264,22 @@ var App;
 (function (App) {
     let tmdb = new Api.ApiMovie();
     let allMovies = new Controller.MovieController(tmdb);
-    allMovies.ListPopularMovies();
+    if (window.location.pathname == '/index.html' || window.location.pathname == '/') {
+        allMovies.ListPopularMovies();
+    }
     let apiMyListMovies = new Api.MyListMovie();
     let myList = new Controller.MyMoviesController(apiMyListMovies);
-    myList.ShowAllMovies();
-    myList.ShowAddMovieForm();
-    myList.AddMovie();
+    if (window.location.pathname == '/myList.html') {
+        myList.ShowAllMovies();
+        myList.ShowAddMovieForm();
+        myList.AddMovie();
+    }
 })(App || (App = {}));
+function Delete(id) {
+    let apiMyListMovies = new Api.MyListMovie();
+    let myList = new Controller.MyMoviesController(apiMyListMovies);
+    myList.DeleteMovie(id);
+}
 var Test;
 (function (Test) {
     function SayingFactoria() {

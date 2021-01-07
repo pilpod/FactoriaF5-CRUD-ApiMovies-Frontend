@@ -38,17 +38,21 @@ namespace Controller {
 
         public AddMovie()
         {
-            const btn_validate_movie = document.getElementById('btn_validate_movie') as HTMLFormElement;
+
+            const btn_validate_movie = document.getElementById('btn_validate_movie') as HTMLElement;
             const form_create_movie = document.getElementById('form_create_movie') as HTMLFormElement;
-            const data = new FormData(form_create_movie);
 
-            btn_validate_movie.addEventListener('click', () => {
-                this.movies.PostDataMovie(data)
-            })
+            let data: any[] = [];
 
+            form_create_movie.addEventListener('submit', (event) => {
+                event.preventDefault();
+                for (let i = 0; i < form_create_movie.length -1 ; i++) {
+                    data.push(form_create_movie[i].value);
+                }
+                let newMovie = new Models.Movie(data[0], data[1], data[2], data[3] );
+                newMovie.AddMovie(this.movies);                
+            });
 
-            // let movie = new Models.Movie();
-            // this.movies.PostDataMovie().then(data => movie.AddMovie(data));
         }
 
         public UpdateMovie()
@@ -56,8 +60,13 @@ namespace Controller {
             
         }
 
-        public DeleteMovie()
+        public DeleteMovie(id:number)
         {
+            let api = this.movies;
+            let movieToDelete = new Models.Movie();
+            movieToDelete.SetId(id);
+
+            movieToDelete.DeleteMovie(api);
 
         }
 

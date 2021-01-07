@@ -70,19 +70,19 @@
       </section>
 
     <section id="form_add_movie" hidden>
-      <form id="form_create_movie" class="row my-4">
+      <form id="form_create_movie" class="row my-4" method="POST">
         <div class="col">
-          <input class="form-control" type="text" placeholder="title" name="title">
+          <input class="form-control" type="text" placeholder="title" name="title" id="title" required>
         </div>
         <div class="col">
-          <input class="form-control" type="text" placeholder="poster" name="poster">
+          <input class="form-control" type="text" placeholder="poster" name="poster" id="poster" required>
         </div>
         <div class="col-2">
-          <input class="form-control" type="text" placeholder="director" name="director">
+          <input class="form-control" type="text" placeholder="director" name="director" id="director" required>
         </div>
         <div class="col">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>classification</option>
+          <select class="form-select" aria-label="Default select example" id="classification" required>
+            <option hidden selected>classification</option>
             <option value="Drama">Drama</option>
             <option value="Comedia">Comedia</option>
             <option value="Documental">Documental</option>
@@ -90,6 +90,7 @@
           </select>
         </div>
         <div class="col">
+          <!-- <input id="btn_validate_movie" value="Validate"> -->
           <button id="btn_validate_movie" class="btn btn-primary" type="submit">Validate</button>
         </div>
       </form>

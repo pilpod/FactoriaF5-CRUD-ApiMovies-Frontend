@@ -4,13 +4,13 @@ namespace Models {
 
     export class Movie 
     {
-        private id: string;
+        private id: number;
         private title: string;
         private poster: string;
         private director: string;
         private genre: string;
 
-        constructor(title?:any, poster?:any, id?: any, director?: any, genre?: any) 
+        constructor(title?:any, poster?:any, director?: any, genre?: any, id?: any) 
         {
             this.id = id;
             this.title = title;
@@ -19,7 +19,7 @@ namespace Models {
             this.genre = genre;
         }
 
-        public GetId(): string
+        public GetId(): number
         {
             return this.id;
         }
@@ -44,6 +44,11 @@ namespace Models {
             return this.genre;
         }
 
+        public SetId(id: number)
+        {
+            this.id = id;
+        }
+
         public ShowAllMovie(data:any)
         {
             const myMoviesSection = document.getElementById('myMovies') as HTMLInputElement;
@@ -56,21 +61,34 @@ namespace Models {
                 
                 myMoviesSection.innerHTML += `
                     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card mr-3 mt-3" style="width: 16rem;">
-                    <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
+                        <div class="card mr-3 mt-3" style="width: 16rem;">
+                            <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
+                            </div>
+                            <button id="btn_delete_movie" class="btn btn-danger" onclick="Delete(${this.id})">Trash</button>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 `;
                 
             }
         }
 
-        public AddMovie(data:any)
+        public AddMovie(api: Api.MyListMovie)
         {
-            console.log(data);
+            let newMovie = {
+                "nombre": this.title,
+                "poster": this.poster,
+                "director": this.director,
+                "clasificacion": this.genre,
+            }
+
+            api.PostDataMovie(newMovie);
+        }
+
+        public DeleteMovie(api:Api.MyListMovie)
+        {
+            api.DeleteDataMovie(this.id);
         }
 
     }

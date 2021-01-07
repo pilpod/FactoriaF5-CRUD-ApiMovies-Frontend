@@ -8,17 +8,29 @@ namespace App {
 
   let tmdb = new Api.ApiMovie();
   let allMovies = new Controller.MovieController(tmdb);
-  allMovies.ListPopularMovies();
+
+  if(window.location.pathname == '/index.html' || window.location.pathname == '/') {
+    allMovies.ListPopularMovies();
+  }
 
   let apiMyListMovies = new Api.MyListMovie();
   let myList = new Controller.MyMoviesController(apiMyListMovies);
 
-  myList.ShowAllMovies();
-  myList.ShowAddMovieForm();
-  myList.AddMovie();
 
-  
-  
+  if(window.location.pathname == '/myList.html') {
+    myList.ShowAllMovies();
+    myList.ShowAddMovieForm();
+    myList.AddMovie();
+  }
 
+}
+
+
+function Delete(id: number)
+{
+  let apiMyListMovies = new Api.MyListMovie();
+  let myList = new Controller.MyMoviesController(apiMyListMovies);
+
+  myList.DeleteMovie(id);
 }
 
