@@ -21,10 +21,18 @@ namespace App {
     myList.ShowAllMovies();
     myList.ShowAddMovieForm();
     myList.AddMovie();
+    myList.UpdateMovie();
   }
 
 }
 
+function Edit(id:number)
+{
+  let apiMyListMovies = new Api.MyListMovie();
+  let myList = new Controller.MyMoviesController(apiMyListMovies);
+
+  myList.FillUpdateForm(id);
+}
 
 function Delete(id: number)
 {

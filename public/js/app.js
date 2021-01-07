@@ -38,10 +38,13 @@ var Models;
                     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                         <div class="card mr-3 mt-3" style="width: 16rem;">
                             <img id="movie_img" src="${this.poster}" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 id="movie_title" class="card-title"><a href="${this.id}">${this.title}</a></h5>
                             </div>
-                            <button id="btn_delete_movie" class="btn btn-danger" onclick="Delete(${this.id})">Trash</button>
+                            <div class="d-flex">
+                                <button id="btn_edit_movie" class="w-50 btn btn-primary" data-bs-toggle="modal" data-bs-target="#editMovie" onclick="Edit(${this.id})">Edit</button>
+                                <button id="btn_delete_movie" class="w-50 btn btn-danger" onclick="Delete(${this.id})">Trash</button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -55,6 +58,28 @@ var Models;
                 "clasificacion": this.genre,
             };
             api.PostDataMovie(newMovie);
+        }
+        EditMovie(data) {
+            let editForm = document.getElementById('modal_edit_form');
+            this.id = data['id'];
+            this.title = data['nombre'];
+            this.poster = data['poster'];
+            this.director = data['director'];
+            this.genre = data['clasificacion'];
+            editForm[0].value = this.title;
+            editForm[1].value = this.poster;
+            editForm[2].value = this.director;
+            editForm[3].value = this.genre;
+        }
+        UpdateMovie(api) {
+            let dataMovie = {
+                "nombre": this.title,
+                "poster": this.poster,
+                "director": this.director,
+                "clasificacion": this.genre,
+            };
+            console.log(dataMovie);
+            // api.UpdateMovie(this.id, dataMovie);
         }
         DeleteMovie(api) {
             api.DeleteDataMovie(this.id);
@@ -157,6 +182,40 @@ var Api;
                     .catch(error => console.log('error', error));
             });
         }
+        GetMovie(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const promise = yield fetch(this.url + id, {
+                        method: 'GET',
+                        redirect: 'follow',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    let response = yield promise.json();
+                    return response;
+                }
+                catch (error) {
+                    console.log(error);
+                }
+            });
+        }
+        UpdateMovie(id, data) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify(data);
+                yield fetch(this.url + id, {
+                    method: 'PUT',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                })
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+            });
+        }
         DeleteDataMovie(id) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield fetch(this.url + id, {
@@ -233,7 +292,6 @@ var Controller;
             });
         }
         AddMovie() {
-            const btn_validate_movie = document.getElementById('btn_validate_movie');
             const form_create_movie = document.getElementById('form_create_movie');
             let data = [];
             form_create_movie.addEventListener('submit', (event) => {
@@ -245,7 +303,21 @@ var Controller;
                 newMovie.AddMovie(this.movies);
             });
         }
+        FillUpdateForm(id) {
+            let movieToEdit = new Models.Movie();
+            this.movies.GetMovie(id).then(data => movieToEdit.EditMovie(data));
+        }
         UpdateMovie() {
+            const modal_edit_form = document.getElementById('modal_edit_form');
+            let data = [];
+            modal_edit_form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                for (let i = 0; i < modal_edit_form.length - 2; i++) {
+                    data.push(modal_edit_form[i].value);
+                }
+                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3]);
+                movieToEdit.UpdateMovie(this.movies);
+            });
         }
         DeleteMovie(id) {
             let api = this.movies;
@@ -273,8 +345,14 @@ var App;
         myList.ShowAllMovies();
         myList.ShowAddMovieForm();
         myList.AddMovie();
+        myList.UpdateMovie();
     }
 })(App || (App = {}));
+function Edit(id) {
+    let apiMyListMovies = new Api.MyListMovie();
+    let myList = new Controller.MyMoviesController(apiMyListMovies);
+    myList.FillUpdateForm(id);
+}
 function Delete(id) {
     let apiMyListMovies = new Api.MyListMovie();
     let myList = new Controller.MyMoviesController(apiMyListMovies);

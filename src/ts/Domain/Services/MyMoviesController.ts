@@ -39,7 +39,6 @@ namespace Controller {
         public AddMovie()
         {
 
-            const btn_validate_movie = document.getElementById('btn_validate_movie') as HTMLElement;
             const form_create_movie = document.getElementById('form_create_movie') as HTMLFormElement;
 
             let data: any[] = [];
@@ -55,9 +54,26 @@ namespace Controller {
 
         }
 
+        public FillUpdateForm(id:number)
+        {
+            let movieToEdit = new Models.Movie();
+            this.movies.GetMovie(id).then(data => movieToEdit.EditMovie(data));
+        }
+
         public UpdateMovie()
         {
-            
+            const modal_edit_form = document.getElementById('modal_edit_form') as HTMLFormElement;
+
+            let data: any[] = [];
+
+            modal_edit_form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                for (let i = 0; i < modal_edit_form.length - 2 ; i++) {
+                    data.push(modal_edit_form[i].value);
+                }
+                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3]);
+                movieToEdit.UpdateMovie(this.movies);                
+            });
         }
 
         public DeleteMovie(id:number)

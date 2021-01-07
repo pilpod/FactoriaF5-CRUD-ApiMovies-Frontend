@@ -97,6 +97,13 @@
       "director": "Nicolas Vanier",
       "clasificacion": "Drama",
       "id": 18
+    },
+    {
+      "nombre": "The New Mutants",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDQ2NTdmNDgtMGIwMS00ODE2LTk5M2EtZGZhYzc4MWRlNTU3XkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_.jpg",
+      "director": "Josh Boone",
+      "clasificacion": "Acción",
+      "id": 19
     }
   ],
   "clasificaciones": [
