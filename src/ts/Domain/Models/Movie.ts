@@ -103,25 +103,28 @@ namespace Models {
             editForm[1].value = this.poster;
             editForm[2].value = this.director;
             editForm[3].value = this.genre;
+            editForm[4].value = this.id;
+            
         }
 
         public UpdateMovie(api: Api.MyListMovie)
         {
             let dataMovie = {
+                "id": this.id,
                 "nombre": this.title,
                 "poster": this.poster,
                 "director": this.director,
                 "clasificacion": this.genre,
             }
 
-            console.log(dataMovie);
+            api.UpdateMovie(dataMovie.id, dataMovie);
 
-            // api.UpdateMovie(this.id, dataMovie);
         }
 
         public DeleteMovie(api:Api.MyListMovie)
         {
             api.DeleteDataMovie(this.id);
+
         }
 
     }

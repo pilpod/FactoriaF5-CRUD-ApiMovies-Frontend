@@ -1,11 +1,11 @@
 {
   "peliculas": [
     {
+      "id": 4,
       "nombre": "300",
       "poster": "https://m.media-amazon.com/images/I/517mxiuMdqL._AC_.jpg",
       "director": "Zack Snyder",
-      "clasificacion": "Acción",
-      "id": 4
+      "clasificacion": "Acción"
     },
     {
       "id": 5,
@@ -36,11 +36,11 @@
       "id": 9
     },
     {
+      "id": 10,
       "nombre": "Madagascar",
-      "poster": "https://www.movienco.co.uk/carteles/100/188/001.jpg",
+      "poster": "https://images-na.ssl-images-amazon.com/images/I/5121RxCDHUL._AC_.jpg",
       "director": "Dreamworks",
-      "clasificacion": "Animación",
-      "id": 10
+      "clasificacion": ""
     },
     {
       "nombre": "Batman",
@@ -90,13 +90,6 @@
       "director": "George Gallo",
       "clasificacion": "Comedia",
       "id": 17
-    },
-    {
-      "nombre": "Poly",
-      "poster": "https://lh3.googleusercontent.com/proxy/ZLPfbntQt7UZJRgfu2tlfqlCl-iFsxc8sa7oc7SBgmXMc0R0ppzXojU2cnVBqwpSRWO8wvE04iw-4DOSEf38NNyvPG9GK8mqbgqmXCmS5WvK7aLBVXdguBShYTmolv_CvK3jLle1_YYQHDJbJ36Nf8vMjaJ3zmE",
-      "director": "Nicolas Vanier",
-      "clasificacion": "Drama",
-      "id": 18
     },
     {
       "nombre": "The New Mutants",

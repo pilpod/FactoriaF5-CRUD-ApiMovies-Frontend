@@ -70,16 +70,17 @@ var Models;
             editForm[1].value = this.poster;
             editForm[2].value = this.director;
             editForm[3].value = this.genre;
+            editForm[4].value = this.id;
         }
         UpdateMovie(api) {
             let dataMovie = {
+                "id": this.id,
                 "nombre": this.title,
                 "poster": this.poster,
                 "director": this.director,
                 "clasificacion": this.genre,
             };
-            console.log(dataMovie);
-            // api.UpdateMovie(this.id, dataMovie);
+            api.UpdateMovie(dataMovie.id, dataMovie);
         }
         DeleteMovie(api) {
             api.DeleteDataMovie(this.id);
@@ -301,6 +302,7 @@ var Controller;
                 }
                 let newMovie = new Models.Movie(data[0], data[1], data[2], data[3]);
                 newMovie.AddMovie(this.movies);
+                setTimeout(this.ReloadPage, 1000);
             });
         }
         FillUpdateForm(id) {
@@ -312,11 +314,12 @@ var Controller;
             let data = [];
             modal_edit_form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                for (let i = 0; i < modal_edit_form.length - 2; i++) {
+                for (let i = 0; i < modal_edit_form.length - 1; i++) {
                     data.push(modal_edit_form[i].value);
                 }
-                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3]);
+                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3], data[4]);
                 movieToEdit.UpdateMovie(this.movies);
+                setTimeout(this.ReloadPage, 1000);
             });
         }
         DeleteMovie(id) {
@@ -324,6 +327,10 @@ var Controller;
             let movieToDelete = new Models.Movie();
             movieToDelete.SetId(id);
             movieToDelete.DeleteMovie(api);
+            setTimeout(this.ReloadPage, 1000);
+        }
+        ReloadPage() {
+            location.reload();
         }
     }
     Controller.MyMoviesController = MyMoviesController;

@@ -49,7 +49,9 @@ namespace Controller {
                     data.push(form_create_movie[i].value);
                 }
                 let newMovie = new Models.Movie(data[0], data[1], data[2], data[3] );
-                newMovie.AddMovie(this.movies);                
+                newMovie.AddMovie(this.movies);
+                
+                setTimeout(this.ReloadPage, 1000);
             });
 
         }
@@ -68,11 +70,13 @@ namespace Controller {
 
             modal_edit_form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                for (let i = 0; i < modal_edit_form.length - 2 ; i++) {
+                for (let i = 0; i < modal_edit_form.length - 1 ; i++) {
                     data.push(modal_edit_form[i].value);
                 }
-                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3]);
-                movieToEdit.UpdateMovie(this.movies);                
+                let movieToEdit = new Models.Movie(data[0], data[1], data[2], data[3], data[4]);
+                movieToEdit.UpdateMovie(this.movies);
+                
+                setTimeout(this.ReloadPage, 1000);
             });
         }
 
@@ -84,6 +88,13 @@ namespace Controller {
 
             movieToDelete.DeleteMovie(api);
 
+            setTimeout(this.ReloadPage, 1000);
+
+        }
+
+        public ReloadPage()
+        {
+            location.reload();
         }
 
     }
