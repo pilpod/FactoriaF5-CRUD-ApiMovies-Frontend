@@ -1,8 +1,33 @@
-# Api películas
+# API Películas
 
-Crea con Postman un crud a la Api de películas
+Ejercicio en el que se tenia que crear un CRUD con la API de peliculas en javascript. Pero esté ejercicio lo he realizado con Typescript para aprender a utilizalo.
 
-## Instalación
+## Comenzando 🚀
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+### Pre-requisitos 📋
+
+- Servidor Fake Api
+- Postman (para pruebas)
+- Typescript (Last version)
+- Bootstrap 5.0
+- Cuenta en TMDB para obtener su propia API key.
+
+### Instalación 🔧
+
+- Crear cuenta en TMDB y obtener datos de conexion
+
+    https://www.themoviedb.org/documentation/api?language=es
+
+- Instala Typescript localmente
+
+    npm install typescript --save-dev
+
+- En caso de querer modificar los archivos .ts necesitarás lanzar este commando para transpilar
+
+    npm run tsc
+    (más información en el archivo "package.json")
 
 - Instala en global el servidor de la Fake Api
 
@@ -16,16 +41,28 @@ Crea con Postman un crud a la Api de películas
 
     https://www.postman.com/
 
-- Crea un Crud en Postman
 
-- Crea un crud en un frontend.
+## Construido con 🛠️
 
-    Utiliza una carpeta ./public/index.html para sustituir la página de inicio.
+* [Typescript]()
+* [Bootstrap 5.0]() - Framework CSS
+* [TMDB](https://www.themoviedb.org/) - API de películas
+* [API peliculas](json/peliculas.json) - API propia
 
-- Modifica el Json a tu gusto y añade imágenes de portada de las películas
+## Versionado 📌
+
+- Solo hay una version
+
+## Autores ✒️
+
+* **Giacomo C.** 
 
 
-## NPM additionals
+## Expresiones de Gratitud 🎁
 
-- npm install uniqid --save-dev
-- npm install --save @types/uniqid
+* Muchas gracias a Factoria F5 (http://www.factoriaf5.org / https://github.com/FactoriaF5) 🤓.
+
+
+
+---
+
